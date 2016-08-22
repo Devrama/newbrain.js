@@ -5,13 +5,13 @@ var ejs = require('ejs'),
 
 module.exports = Backbone.View.extend({
 
-  className: 'dashboard',
+  className: 'editor',
 
   events: {
   },
   
   initialize: function(){
-    $('#hello').html(this.$el.html('welcome dashboard'));
+    $('#hello').html(this.$el.html('welcome editor'));
   },
   
    render: function() {

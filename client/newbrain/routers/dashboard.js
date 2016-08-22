@@ -1,27 +1,31 @@
 var Backbone = require('backbone'),
-    dashboardView = require('../views/dashboard/index');
+    $ = require('jquery'),
+    dashboardIndexView = require('../views/dashboard/index');
 
-var _dashboardView = null;
+var _dashboardIndexView = null;
 
 module.exports = Backbone.Router.extend({
   
   routes: {
-    '' : 'goDashboard',
-    'edit/:number' : 'goEditor'
+    ':username/dashboard' : 'goDashboard'
   },
   
   initialize: function(){
+    var self = this;
+
+    $('body').on('click', '.bb-link', function(e){
+      e && e.preventDefault();
+      self.navigate($(this).attr('href'), { trigger: true, replace: true});
+    });
   },
   
 
-  goDashboard: function(){
-    if(!_dashboardView)
-      _dashboardView = new dashboardView();
+  goDashboard: function(username){
+    if(!_dashboardIndexView)
+      _dashboardIndexView = new dashboardIndexView();
     else
-      _dashboardView.initialize();
+      _dashboardIndexView.initialize();
     
       
-  },
-  goEditor: function(number){
   }
 });

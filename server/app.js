@@ -5,6 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var routesDashboard = require('./routes/views_shared/dashboard');
+var routesEditor = require('./routes/views_shared/editor');
+var routesRestAPI = require('./routes/rest_api/index');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
@@ -31,6 +34,9 @@ app.use('/js/templates', express.static(path.join(__dirname, '/views/client_shar
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/', routesDashboard);// /:username/dashboard
+app.use('/', routesEditor);// /:username/view/:docId
+app.use('/api', routesRestAPI)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

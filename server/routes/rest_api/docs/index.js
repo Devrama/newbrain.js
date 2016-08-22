@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'NewBrain' });
+  var obj = {
+    a:1,
+    b:2,
+    c:3
+  };
+  res.json(obj);
 });
 
 module.exports = router;
