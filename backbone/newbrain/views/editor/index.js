@@ -14,7 +14,7 @@ module.exports = Backbone.View.extend({
     $('#hello').html(this.$el.html('welcome editor'));
   },
   
-   render: function() {
+  render: function() {
     return this;
   },
   

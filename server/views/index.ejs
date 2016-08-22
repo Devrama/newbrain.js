@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/css/style.css' />
-    <script src="./js/newbrain/main.min.js"></script>
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p id="hello">Welcome to <%= title %></p>
-    <p class="dashboard"></p>
-    <a href="/33/dashboard" class="bb-link">dashboard</a><br/>
-    <a href="/33/view/44" class="bb-link">view 44</a><br/>
-  </body>
-</html>
+<%- include('./blocks/common/head') %>
+<%- bodyBlock %>
+<%- include('./blocks/common/foot') %>

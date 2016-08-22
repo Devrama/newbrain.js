@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var layoutRender = require('./middlewares/layout_render');
+
 var routesDashboard = require('./routes/views_shared/dashboard');
 var routesEditor = require('./routes/views_shared/editor');
 var routesRestAPI = require('./routes/rest_api/index');
@@ -30,13 +32,14 @@ app.use(require('node-sass-middleware')({
   sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/js/templates', express.static(path.join(__dirname, '/views/client_shared')));
+app.use('/js/templates', express.static(path.join(__dirname, '/views/backbone_shared')));
 
+app.use(layoutRender.renderIndex());
 app.use('/', routes);
 app.use('/users', users);
 app.use('/', routesDashboard);// /:username/dashboard
 app.use('/', routesEditor);// /:username/view/:docId
-app.use('/api', routesRestAPI)
+app.use('/', routesRestAPI)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
