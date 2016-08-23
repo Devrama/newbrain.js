@@ -7,8 +7,7 @@ var bodyParser = require('body-parser');
 
 var layoutRender = require('./middlewares/layout_render');
 
-var routesDashboard = require('./routes/views_shared/dashboard');
-var routesEditor = require('./routes/views_shared/editor');
+var routesBackbone = require('./routes/backbone');
 var routesRestAPI = require('./routes/rest_api/index');
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -37,8 +36,7 @@ app.use('/js/templates', express.static(path.join(__dirname, '/views/backbone_sh
 app.use(layoutRender.renderIndex());
 app.use('/', routes);
 app.use('/users', users);
-app.use('/', routesDashboard);// /:username/dashboard
-app.use('/', routesEditor);// /:username/view/:docId
+app.use('/', routesBackbone);// Backbone shared paths
 app.use('/', routesRestAPI)
 
 // catch 404 and forward to error handler
