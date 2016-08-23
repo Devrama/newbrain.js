@@ -1,22 +1,44 @@
 var ejs = require('ejs'),
     $ = require('jquery'),
+    _ = require('underscore'),
     Backbone = require('backbone'),
-    Nodebone = require('../../helper/nodebone');;
-var ct = 0;
+    ejsRender = require('../../helper/render_ejs');
+    Nodebone = require('../../helper/nodebone');
+
 module.exports = Nodebone.View.extend({
+
+  username: null,
 
   className: 'dashboard',
 
   events: {
   },
   
-  initialize: function(){
+  initialize: function(options){
+    _.extend(this, options);
+    
     //$('#hello').html(this.$el.html('welcome dashboard'));
     var self = this;
+
     setTimeout(function(){
-      self.emit('nodeboned', ++ct);
-    }, 100);
-    console.log('emit nodeboned');
+
+      ejsRender.render(
+        'dashboard/dashboard',
+        {
+          username: self.username
+        },
+        function(err, rendered){
+          if(!err){
+            self.emit('nodeboned', rendered);
+          }
+          else {
+            //todo error
+            self.emit('nodeboned', rendered);
+          }
+        }
+      );
+    }, 300);
+    
   },
   
   render: function() {

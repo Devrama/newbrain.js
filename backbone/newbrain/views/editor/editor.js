@@ -1,17 +1,42 @@
 var ejs = require('ejs'),
     $ = require('jquery'),
-    Backbone = require('backbone');
+    Backbone = require('backbone'),
+    ejsRender = require('../../helper/render_ejs');
+    Nodebone = require('../../helper/nodebone');
 
+module.exports = Nodebone.View.extend({
 
-module.exports = Backbone.View.extend({
+  username: null,
+  docId: null,
 
   className: 'editor',
 
   events: {
   },
   
-  initialize: function(){
-    $('#hello').html(this.$el.html('welcome editor'));
+  initialize: function(options){
+    //$('#hello').html(this.$el.html('welcome dashboard'));
+    var self = this;
+    
+    setTimeout(function(){
+
+      ejsRender.render(
+        'editor/editor',
+        {
+          username: self.username,
+          docId: self.docId
+        },
+        function(err, rendered){
+          if(!err){
+            self.emit('nodeboned', rendered);
+          }
+          else {
+            //todo error
+            self.emit('nodeboned', rendered);
+          }
+        }
+      );
+    }, 300);
   },
   
   render: function() {

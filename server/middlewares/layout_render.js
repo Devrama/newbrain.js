@@ -2,15 +2,20 @@ var ejs = require('ejs'),
     fs = require('fs'),
     path = require('path');
 
-var favicon = require('serve-favicon');
 /**
  * Insert the provided 'view' templated block into 
- * index template.
+ * layout template.
+ * Call res.render{layout template name}();
+ * i.g. res.renderIndex, res.renderDashboard
  */
-var renderIndex = function(){
+var renderLayout = function(layout){
   return function( req, res, next ) {
     var _render = res.render;
-    res.renderIndex = function( view, options, fn ) {
+    var ucfirstLayout = layout;
+    ucfirstLayout = ucfirstLayout.toLowerCase();
+    ucfirstLayout = ucfirstLayout.charAt(0).toUpperCase() + ucfirstLayout.slice(1)
+
+    res['render'+ucfirstLayout] = function( view, options, fn ) {
       var self = this;
 
       ejs.renderFile(
@@ -20,11 +25,7 @@ var renderIndex = function(){
           if(!err){
             options.bodyBlock = result;
 
-            if(!options.metaTitle) options.metaTitle = '';
-            if(!options.metaDescription) options.metaDescription = '';
-            if(!options.metaKeywords) options.metaKeywords = '';
-
-            _render.call( self, 'index', options, fn );
+            _render.call( self, layout, options, fn );
           }
           else {
             throw err;
@@ -38,5 +39,5 @@ var renderIndex = function(){
 };
 
 module.exports = {
-  renderIndex: renderIndex 
+  renderLayout: renderLayout 
 };

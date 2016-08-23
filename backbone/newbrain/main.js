@@ -12,6 +12,4 @@ $(function(){
 	_editorRouter = new editorRouter();
 	Backbone.history.start({pushState: true, root: "/"});
 
-  console.log('hello world!');
-  console.log('hello wonjong!');
 });

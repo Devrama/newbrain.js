@@ -5,18 +5,17 @@ var _ = require('underscore'),
 var eventEmitter = null;
 var NodeView = null;
 //Running on node.js
-if(typeof module !== 'undefined' && module.exports){
+if(typeof window == 'undefined'){
   eventEmitter = require('events').EventEmitter;
-  NodeView = function(obj){
+  NodeView = function(obj, options){
     _.extend(this, obj);
+    _.extend(this, options);
     if(typeof this.initialize == 'function'){
-      console.log('yes I have initialize');
       this.initialize();
     }
   };
 
   util.inherits(NodeView, eventEmitter);
-  console.log('Emitter inheritted');
 }
 
 var nodebone = {};
@@ -26,11 +25,15 @@ nodebone.View = {};
 nodebone.View.extend = function(obj){
   //Running on node.js
   if(NodeView !== null){
-    return function(){
-      return new NodeView(obj);
+    return function(options){
+      return new NodeView(obj, options);
     };
   }
   else {
+    obj.constructor = function(options){
+      _.extend(this, options);
+      Backbone.View.apply(this, arguments);
+    };
     return Backbone.View.extend(obj);
   }
 };

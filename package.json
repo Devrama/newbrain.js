@@ -26,8 +26,8 @@
   },
   "scripts": {
     "start": "node ./bin/www",
-    "buildclient": "browserify client/newbrain/main.js -o server/public/js/newbrain/main.min.js",
-    "watchclient": "watchify -d client/newbrain/main.js -o server/public/js/newbrain/main.min.js"
+    "buildclient": "browserify backbone/newbrain/main.js -o server/public/js/newbrain/main.min.js",
+    "watchclient": "watchify -d backbone/newbrain/main.js -o server/public/js/newbrain/main.min.js"
   },
   "repository": {},
   "author": "WON JONG YOO",

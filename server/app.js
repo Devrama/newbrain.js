@@ -27,13 +27,13 @@ app.use(cookieParser());
 app.use(require('node-sass-middleware')({
   src: path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
-  indentedSyntax: true,
+  //indentedSyntax: true,
   sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/js/templates', express.static(path.join(__dirname, '/views/backbone_shared')));
+app.use('/js/templates', express.static(path.join(__dirname, '../backbone/newbrain/templates')));
 
-app.use(layoutRender.renderIndex());
+app.use(layoutRender.renderLayout('index'));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/', routesBackbone);// Backbone shared paths

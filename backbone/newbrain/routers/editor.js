@@ -1,13 +1,11 @@
 var Backbone = require('backbone'),
     $ = require('jquery'),
-    editorIndexView = require('../views/editor/editor');
-
-var _editorIndexView = null;
+    editorView = require('../views/editor/editor');
 
 module.exports = Backbone.Router.extend({
   
   routes: {
-    ':user_id/view/:number' : 'goEditor'
+    ':username/view/:docId' : 'goEditor'
   },
   
   initialize: function(){
@@ -21,11 +19,10 @@ module.exports = Backbone.Router.extend({
     */
   },
   
-  goEditor: function(number){
-    if(!_editorIndexView)
-      _editorIndexView = new editorIndexView();
-    else
-      _editorIndexView.initialize();
-    
+  goEditor: function(username, docId){
+    return new editorView({
+      username: username,
+      docId: docId
+    });
   }
 });
