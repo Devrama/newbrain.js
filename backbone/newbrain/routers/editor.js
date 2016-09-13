@@ -9,14 +9,6 @@ module.exports = Backbone.Router.extend({
   },
   
   initialize: function(){
-    var self = this;
-
-    /*
-    $('body').on('click', '.bb-link', function(e){
-      e && e.preventDefault();
-      self.navigate($(this).attr('href'), { trigger: true, replace: true});
-    });
-    */
   },
   
   goEditor: function(username, docId){

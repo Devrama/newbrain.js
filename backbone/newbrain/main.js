@@ -10,6 +10,15 @@ $(function(){
 	//load app-view.js which is a starting point of this app;
 	_dashboardRouter = new dashboardRouter();
 	_editorRouter = new editorRouter();
+
+  if(typeof window !== 'undefined'){
+    $('body').on('click', '.bb-link', function(e){
+      e && e.preventDefault();
+      _dashboardRouter.navigate($(this).attr('href'), { trigger: true, replace: true});
+      _editorRouter.navigate($(this).attr('href'), { trigger: true, replace: true});
+    });
+  }
+
 	Backbone.history.start({pushState: true, root: "/"});
 
 });

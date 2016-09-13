@@ -6,10 +6,10 @@ var ejs = require('ejs'),
     async = require('async'),
     Backbone = require('backbone');
 
-_.extend(module.exports, ejs);
-_.extend(module.exports, renderExtended);
-
 var renderExtended = {};
+_.extend(module.exports, ejs);
+
+
 
 renderExtended.renderSmart = function(view, data, callback){
   //Running on node.js
@@ -147,3 +147,5 @@ function getAllTemplateFileList(view, data, callback){
   });
 
 }
+
+_.extend(module.exports, renderExtended);

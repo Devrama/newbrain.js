@@ -1,11 +1,11 @@
-var ejs = require('ejs'),
-    $ = require('jquery'),
+var $ = require('jquery'),
     Backbone = require('backbone'),
-    ejsRender = require('../../helper/render_ejs');
+    ejs = require('../../helper/ejs_extended');
     Nodebone = require('../../helper/nodebone');
 
 module.exports = Nodebone.View.extend({
 
+  container: null,
   username: null,
   docId: null,
 
@@ -20,7 +20,7 @@ module.exports = Nodebone.View.extend({
     
     setTimeout(function(){
 
-      ejsRender.render(
+      ejs.renderSmart(
         'editor/editor',
         {
           username: self.username,

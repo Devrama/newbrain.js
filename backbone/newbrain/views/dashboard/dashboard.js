@@ -1,12 +1,12 @@
-var ejs = require('ejs'),
-    $ = require('jquery'),
+var $ = require('jquery'),
     _ = require('underscore'),
     Backbone = require('backbone'),
-    ejsRender = require('../../helper/render_ejs');
+    ejs = require('../../helper/ejs_extended');
     Nodebone = require('../../helper/nodebone');
 
 module.exports = Nodebone.View.extend({
 
+  container: null,
   username: null,
 
   className: 'dashboard',
@@ -22,7 +22,7 @@ module.exports = Nodebone.View.extend({
 
     setTimeout(function(){
 
-      ejsRender.render(
+      ejs.renderSmart(
         'dashboard/dashboard',
         {
           username: self.username
