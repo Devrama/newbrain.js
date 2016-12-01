@@ -13,7 +13,7 @@ var renderLayout = function(layout){
     var _render = res.render;
     var ucfirstLayout = layout;
     ucfirstLayout = ucfirstLayout.toLowerCase();
-    ucfirstLayout = ucfirstLayout.charAt(0).toUpperCase() + ucfirstLayout.slice(1)
+    ucfirstLayout = ucfirstLayout.charAt(0).toUpperCase() + ucfirstLayout.slice(1);
 
     res['render'+ucfirstLayout] = function( view, options, fn ) {
       var self = this;
@@ -32,7 +32,7 @@ var renderLayout = function(layout){
           }
         }
       );
-    }
+    };
 
     next();
   };

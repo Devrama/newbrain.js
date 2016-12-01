@@ -55,7 +55,7 @@ function renderIncludeRecursive(view, data, templateData){
 
   var fn = ejs.compile(
     ejsText,
-    { 
+    {
       client: true,
       filename: path.join('/js/templates/', view + '.ejs')
     }
@@ -88,7 +88,7 @@ function getAllTemplateFileList(view, data, callback){
 
     var fn = ejs.compile(
       ejsText,
-      { 
+      {
         client: true,
         filename: path.join('/js/templates/', view + '.ejs')
       }

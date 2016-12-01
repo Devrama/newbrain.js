@@ -23,7 +23,7 @@ function generateBackboneRoute(layoutTemplate, backboneRouter){
         args.push(req.params[key]);
       }
 
-      var objView = backboneRouter[funcName].apply(null, args);;
+      var objView = backboneRouter[funcName].apply(null, args);
 
       objView.once('nodeboned', function(textRendered){
         res.render(

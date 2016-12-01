@@ -37,7 +37,7 @@ app.use(layoutRender.renderLayout('index'));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/', routesBackbone);// Backbone shared paths
-app.use('/', routesRestAPI)
+app.use('/', routesRestAPI);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
