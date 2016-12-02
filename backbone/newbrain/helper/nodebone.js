@@ -32,6 +32,7 @@ nodebone.View.extend = function(obj){
   else {
     obj.constructor = function(options){
       _.extend(this, options);
+      _.extend(this, {emit: function(){}});
       Backbone.View.apply(this, arguments);
     };
     return Backbone.View.extend(obj);

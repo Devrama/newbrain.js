@@ -1,7 +1,7 @@
 var $ = require('jquery'),
     _ = require('underscore'),
     Backbone = require('backbone'),
-    ejs = require('../../helper/ejs_extended');
+    ejs = require('ejs-browser-async');
     Nodebone = require('../../helper/nodebone');
 
 module.exports = Nodebone.View.extend({
@@ -29,7 +29,14 @@ module.exports = Nodebone.View.extend({
         },
         function(err, rendered){
           if(!err){
-            self.emit('nodeboned', rendered);
+            if(typeof window !== 'undefined'){
+              self.$el.html(rendered);
+              $('#newbrain-render').html(self.el);
+            }
+            else {
+              self.emit('nodeboned', rendered);
+            }
+
           }
           else {
             //todo error

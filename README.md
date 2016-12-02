@@ -10,4 +10,6 @@
 
 # Build frontend code
 `npm run buildclient` which is same as `browserify backbone/newbrain/main.js -o server/public/js/newbrain/main.min.js`
+
 `npm run watchclient` which is same as `watchify -d backbone/newbrain/main.js -o server/public/js/newbrain/main.min.js`
+

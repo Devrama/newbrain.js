@@ -11,25 +11,41 @@
     "debug": "~2.2.0",
     "ejs": "~2.4.1",
     "express": "^4.14.0",
-    "jquery": "^3.1.0",
+    "jquery": "^3.1.1",
     "mongoose": "^4.5.9",
     "morgan": "~1.7.0",
     "node-sass-middleware": "0.8.0",
     "redis": "^2.6.2",
-    "requirejs": "^2.2.0",
     "serve-favicon": "~2.3.0",
     "socket.io": "^1.4.8"
   },
   "devDependencies": {
     "browserify": "^13.1.0",
+    "browserify-shim": "^3.8.12",
     "watchify": "^3.7.0"
   },
   "scripts": {
     "start": "node ./bin/www",
-    "buildclient": "browserify backbone/newbrain/main.js -o server/public/js/newbrain/main.min.js",
-    "watchclient": "watchify -d backbone/newbrain/main.js -o server/public/js/newbrain/main.min.js"
+    "buildclient": "node node_modules/browserify/bin/cmd.js backbone/newbrain/main.js -o server/public/js/newbrain/main.min.js",
+    "watchclient": "node node_modules/watchify/bin/cmd.js -d backbone/newbrain/main.js -o server/public/js/newbrain/main.min.js"
   },
   "repository": {},
   "author": "WON JONG YOO",
-  "license": "devrama.com"
+  "license": "devrama.com",
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browser": {
+    "jquery": "server/public/lib/js/jquery-3.1.1.min.js",
+    "underscore": "server/public/lib/js/underscore-min.js",
+    "backbone": "server/public/lib/js/backbone-min.js",
+    "ejs": "server/public/lib/js/ejs.min.js"
+  },
+  "browserify-shim": {
+    "jquery": "global:$",
+    "backbone": "global:Backbone",
+    "underscore": "global:_"
+  }
 }
