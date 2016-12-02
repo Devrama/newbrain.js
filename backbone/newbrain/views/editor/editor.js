@@ -21,7 +21,10 @@ module.exports = Nodebone.View.extend({
     setTimeout(function(){
 
       ejs.renderSmart(
-        'editor/editor',
+        {
+          client: '/js/templates/editor/editor.ejs',
+          server: __dirname + '/../templates/editor/editor.ejs'
+        },
         {
           username: self.username,
           docId: self.docId

@@ -23,7 +23,10 @@ module.exports = Nodebone.View.extend({
     setTimeout(function(){
 
       ejs.renderSmart(
-        'dashboard/dashboard',
+        {
+          client: '/js/templates/dashboard/dashboard.ejs',
+          server: __dirname + '/../templates/dashboard/dashboard.ejs'
+        },
         {
           username: self.username
         },
